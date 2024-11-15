@@ -53,12 +53,13 @@ class Ore
 int main()
 {
 locale::global(locale("pl_PL.UTF-8"));
+string string_for_skipping_lines;
 
  ifstream file("../dane/kategorie.json");
     if (!file) cerr << "Could not open the file!" << endl;
 
 
-getline(file, string());
+getline(file, string_for_skipping_lines);
 
 
 Kategoria category[19];
@@ -72,7 +73,7 @@ while(!file.eof()) //getting categories into a class object
     if(line=="]")  break; //breaking after the file ends (last line is ] )
 
 
-    getline(file, string()); //skipping the {
+    getline(file, string_for_skipping_lines); //skipping the {
 
     //getting the value of "Typ"
     getline(file, line); 
@@ -109,7 +110,7 @@ while(!file.eof()) //getting categories into a class object
 
    i++;
 
-    getline(file, string()); //skipping the }
+    getline(file, string_for_skipping_lines); //skipping the }
 
 }
 file.close();
@@ -126,14 +127,14 @@ int pom_fraction;
 double sum_fraction;
 
 
-getline(file2, string()); //skipping the [
+getline(file2, string_for_skipping_lines); //skipping the [
 while(!file2.eof()) //getting ores into a class object
 {
     file2>>line;
     if(line=="]")  break; //breaking after the file ends (last line is ] )
 
 
-    getline(file2, string()); //skipping the {
+    getline(file2, string_for_skipping_lines); //skipping the {
 
     //getting the value of "Typ"
     getline(file2, line); 
@@ -220,7 +221,7 @@ while(!file2.eof()) //getting ores into a class object
 
 
 
-    getline(file2, string()); //skipping the }
+    getline(file2, string_for_skipping_lines); //skipping the }
 
 
 
